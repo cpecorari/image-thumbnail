@@ -20,10 +20,10 @@ By default the thumbnail's file format will be the same than the source file. Yo
 #### Async/Await (Typescript & ES7)
 
 ```js
-const imageThumbnail = require("image-thumbnail");
+const imageThumbnail = require('image-thumbnail');
 
 try {
-  const thumbnail = await imageThumbnail("resources/images/dog.jpg");
+  const thumbnail = await imageThumbnail('resources/images/dog.jpg');
   console.log(thumbnail);
 } catch (err) {
   console.error(err);
@@ -33,9 +33,9 @@ try {
 #### Using promises (node 8.x)
 
 ```js
-const imageThumbnail = require("image-thumbnail");
+const imageThumbnail = require('image-thumbnail');
 
-imageThumbnail("resources/images/dog.jpg")
+imageThumbnail('resources/images/dog.jpg')
   .then((thumbnail) => {
     console.log(thumbnail);
   })
@@ -47,10 +47,10 @@ imageThumbnail("resources/images/dog.jpg")
 #### From Uri
 
 ```js
-const imageThumbnail = require("image-thumbnail");
+const imageThumbnail = require('image-thumbnail');
 
 try {
-  const thumbnail = await imageThumbnail({ uri: "https://images/dogs.jpg" });
+  const thumbnail = await imageThumbnail({ uri: 'https://images/dogs.jpg' });
   console.log(thumbnail);
 } catch (err) {
   console.error(err);
@@ -60,11 +60,11 @@ try {
 #### From Base64
 
 ```js
-const imageThumbnail = require("image-thumbnail");
+const imageThumbnail = require('image-thumbnail');
 
 try {
   const thumbnail = await imageThumbnail(
-    "/9j/4AAQSkZJRgABAQEBLAEsAAD/4QEERXhpZgAA=="
+    '/9j/4AAQSkZJRgABAQEBLAEsAAD/4QEERXhpZgAA=='
   );
   console.log(thumbnail);
 } catch (err) {
@@ -75,10 +75,10 @@ try {
 #### From Path
 
 ```js
-const imageThumbnail = require("image-thumbnail");
+const imageThumbnail = require('image-thumbnail');
 
 try {
-  const thumbnail = await imageThumbnail("resources/images/dog.jpg");
+  const thumbnail = await imageThumbnail('resources/images/dog.jpg');
   console.log(thumbnail);
 } catch (err) {
   console.error(err);
@@ -88,10 +88,10 @@ try {
 #### From Buffer
 
 ```js
-const imageThumbnail = require("image-thumbnail");
+const imageThumbnail = require('image-thumbnail');
 
 try {
-  const imageBuffer = fs.readFileSync("resources/images/dog.jpg");
+  const imageBuffer = fs.readFileSync('resources/images/dog.jpg');
 
   const thumbnail = await imageThumbnail(imageBuffer);
   console.log(thumbnail);
@@ -103,11 +103,11 @@ try {
 #### From Stream
 
 ```js
-const imageThumbnail = require("image-thumbnail");
-const fs = require("fs");
+const imageThumbnail = require('image-thumbnail');
+const fs = require('fs');
 
 try {
-  const stream = fs.createReadStream("resources/images/dog.jpg");
+  const stream = fs.createReadStream('resources/images/dog.jpg');
 
   const thumbnail = await imageThumbnail(stream);
   console.log(thumbnail);
@@ -124,16 +124,17 @@ try {
   - **height** [number] - image thumbnail height.
   - **responseType** ['buffer' || 'base64'] - response output type. Default = 'buffer'
   - **jpegOptions** [0-100] - Example: { force:true, quality:100 }
+  - **fit** [string] - method by which the image should fit the width/height. Default = contain
 
 ### Examples
 
 ```js
-const imageThumbnail = require("image-thumbnail");
+const imageThumbnail = require('image-thumbnail');
 
-let options = { percentage: 25, responseType: "base64" };
+let options = { percentage: 25, responseType: 'base64' };
 
 try {
-  const thumbnail = await imageThumbnail("resources/images/dog.jpg", options);
+  const thumbnail = await imageThumbnail('resources/images/dog.jpg', options);
   console.log(thumbnail);
 } catch (err) {
   console.error(err);
@@ -141,12 +142,12 @@ try {
 ```
 
 ```js
-const imageThumbnail = require("image-thumbnail");
+const imageThumbnail = require('image-thumbnail');
 
-let options = { width: 100, responseType: "base64" }; // You can also add only height, or add both
+let options = { width: 100, responseType: 'base64' }; // You can also add only height, or add both
 
 try {
-  const thumbnail = await imageThumbnail("resources/images/dog.jpg", options);
+  const thumbnail = await imageThumbnail('resources/images/dog.jpg', options);
   console.log(thumbnail);
 } catch (err) {
   console.error(err);
@@ -154,17 +155,17 @@ try {
 ```
 
 ```js
-const imageThumbnail = require("image-thumbnail");
+const imageThumbnail = require('image-thumbnail');
 
 let options = {
   width: 100,
   height: 100,
-  responseType: "base64",
+  responseType: 'base64',
   jpegOptions: { force: true, quality: 90 },
 };
 
 try {
-  const thumbnail = await imageThumbnail("resources/images/dog.jpg", options);
+  const thumbnail = await imageThumbnail('resources/images/dog.jpg', options);
   console.log(thumbnail);
 } catch (err) {
   console.error(err);
