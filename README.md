@@ -124,7 +124,7 @@ try {
   - **height** [number] - image thumbnail height.
   - **responseType** ['buffer' || 'base64'] - response output type. Default = 'buffer'
   - **jpegOptions** [0-100] - Example: { force:true, quality:100 }
-  - **fit** [string] - method by which the image should fit the width/height. Default = contain
+  - **fit** [string] - method by which the image should fit the width/height. Default = contain ([details](https://sharp.pixelplumbing.com/api-resize))
 
 ### Examples
 
