@@ -126,6 +126,7 @@ try {
   - **jpegOptions** [0-100] - Example: { force:true, quality:100 }
   - **fit** [string] - method by which the image should fit the width/height. Default = contain ([details](https://sharp.pixelplumbing.com/api-resize))
   - **failOnError** [boolean] - Set to false to avoid read problems for images from some phones (i.e Samsung) in the sharp lib. Default = true ([details](https://github.com/lovell/sharp/issues/1578))
+  - **withMetaData** [boolean] - Keep metadata in the thumbnail (will increase file size)
 
 ### Examples
 
