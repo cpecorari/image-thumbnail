@@ -17,11 +17,11 @@ const fromBase64 = async (source, percentage, width, height, responseType, jpegO
     const dimensions = getDimensions(imageBuffer, percentage, { width, height });
     const thumbnailBuffer = await sharpResize(imageBuffer, dimensions, jpegOptions, fit, failOnError, withMetaData);
 
-  if (responseType === 'base64') {
-    return thumbnailBuffer.toString('base64');
-  }
+    if (responseType === 'base64') {
+        return thumbnailBuffer.toString('base64');
+    }
 
-  return thumbnailBuffer;
+    return thumbnailBuffer;
 };
 
 const fromUri = async (source, percentage, width, height, responseType, jpegOptions, fit, failOnError, withMetaData) => {
@@ -31,18 +31,12 @@ const fromUri = async (source, percentage, width, height, responseType, jpegOpti
     const dimensions = getDimensions(imageBuffer, percentage, { width, height });
     const thumbnailBuffer = await sharpResize(imageBuffer, dimensions, jpegOptions, fit, failOnError, withMetaData);
 
-  const dimensions = getDimensions(imageBuffer, percentage, { width, height });
-  const thumbnailBuffer = await sharpResize(
-    imageBuffer,
-    dimensions,
-    jpegOptions
-  );
 
-  if (responseType === 'base64') {
-    return thumbnailBuffer.toString('base64');
-  }
+    if (responseType === 'base64') {
+        return thumbnailBuffer.toString('base64');
+    }
 
-  return thumbnailBuffer;
+    return thumbnailBuffer;
 };
 
 const fromPath = async (source, percentage, width, height, responseType, jpegOptions, fit, failOnError, withMetaData) => {
@@ -51,11 +45,11 @@ const fromPath = async (source, percentage, width, height, responseType, jpegOpt
     const dimensions = getDimensions(imageBuffer, percentage, { width, height });
     const thumbnailBuffer = await sharpResize(imageBuffer, dimensions, jpegOptions, fit, failOnError, withMetaData);
 
-  if (responseType === 'base64') {
-    return thumbnailBuffer.toString('base64');
-  }
+    if (responseType === 'base64') {
+        return thumbnailBuffer.toString('base64');
+    }
 
-  return thumbnailBuffer;
+    return thumbnailBuffer;
 };
 
 const fromReadStream = async (source, percentage, width, height, responseType, jpegOptions, fit, failOnError, withMetaData) => {
@@ -63,11 +57,11 @@ const fromReadStream = async (source, percentage, width, height, responseType, j
     const dimensions = getDimensions(imageBuffer, percentage, { width, height });
     const thumbnailBuffer = await sharpResize(imageBuffer, dimensions, jpegOptions, fit, failOnError, withMetaData);
 
-  if (responseType === 'base64') {
-    return thumbnailBuffer.toString('base64');
-  }
+    if (responseType === 'base64') {
+        return thumbnailBuffer.toString('base64');
+    }
 
-  return thumbnailBuffer;
+    return thumbnailBuffer;
 };
 
 const fromBuffer = async (source, percentage, width, height, responseType, jpegOptions, fit, failOnError, withMetaData) => {
@@ -76,11 +70,11 @@ const fromBuffer = async (source, percentage, width, height, responseType, jpegO
     const dimensions = getDimensions(imageBuffer, percentage, { width, height });
     const thumbnailBuffer = await sharpResize(imageBuffer, dimensions, jpegOptions, fit, failOnError, withMetaData);
 
-  if (responseType === 'base64') {
-    return thumbnailBuffer.toString('base64');
-  }
+    if (responseType === 'base64') {
+        return thumbnailBuffer.toString('base64');
+    }
 
-  return thumbnailBuffer;
+    return thumbnailBuffer;
 };
 
 module.exports = async (source, options) => {
@@ -114,51 +108,23 @@ module.exports = async (source, options) => {
             default:
                 throw new Error('unsupported source type');
         }
-      default:
-        throw new Error('unsupported source type');
+    } catch (err) {
+        throw new Error(err.message);
     }
-  } catch (err) {
-    throw new Error(err.message);
-  }
 };
 
 const getDimensions = (imageBuffer, percentageOfImage, dimensions) => {
-  if (
-    typeof dimensions.width != 'undefined' ||
-    typeof dimensions.height != 'undefined'
-  ) {
-    return { width: dimensions.width, height: dimensions.height };
-  }
+    if (typeof dimensions.width != 'undefined' || typeof dimensions.height != 'undefined') {
+        return util.removeUndefined(dimensions);
+    }
 
-  const originalDimensions = sizeOf(imageBuffer);
+    const originalDimensions = sizeOf(imageBuffer);
 
-  const width = parseInt(
-    (originalDimensions.width * (percentageOfImage / 100)).toFixed(0)
-  );
-  const height = parseInt(
-    (originalDimensions.height * (percentageOfImage / 100)).toFixed(0)
-  );
+    const width = parseInt((originalDimensions.width * (percentageOfImage / 100)).toFixed(0));
+    const height = parseInt((originalDimensions.height * (percentageOfImage / 100)).toFixed(0));
 
-  return { width, height };
-};
-
-const mergeDimensions = (imageBuffer, dimensions) => {
-  const originalDimensions = sizeOf(imageBuffer);
-  let newDimensions = dimensions;
-
-  if (typeof dimensions.width == 'undefined')
-    newDimensions = {
-      width: originalDimensions.width,
-      height: dimensions.height,
-    };
-  else if (typeof dimensions.height == 'undefined')
-    newDimensions = {
-      width: dimensions.width,
-      height: originalDimensions.height,
-    };
-
-  return newDimensions;
-};
+    return { width, height };
+}
 
 const sharpResize = (imageBuffer, dimensions, jpegOptions, fit, failOnError, withMetadata) => {
     return new Promise((resolve, reject) => {
